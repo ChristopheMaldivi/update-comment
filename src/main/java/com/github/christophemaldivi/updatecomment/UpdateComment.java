@@ -18,6 +18,7 @@ public class UpdateComment {
     }
 
     for (File file : parameters.sourceDirectory) {
+      System.out.println("Update '" + file.getAbsolutePath() + "'");
       updateComment(file, parameters);
     }
   }
@@ -31,7 +32,7 @@ public class UpdateComment {
   }
 
   private static Parameters buildParameters(String[] args) throws IOException {
-    Collection<File> sourceDirectory = FileUtils.listFiles(new File(args[0]), new String[]{"*.java"}, true);
+    Collection<File> sourceDirectory = FileUtils.listFiles(new File(args[0]), new String[]{"java"}, true);
     String oldCommentPart = FileUtils.readFileToString(new File(args[1]));
     String newComment = FileUtils.readFileToString(new File(args[2]));
     return new Parameters(sourceDirectory, oldCommentPart, newComment);

@@ -24,8 +24,10 @@ class CommentReplace {
   private int retrieveOldCommentStartIndex(String oldText, int oldCommentPartIndex) {
     int index = oldCommentPartIndex;
     do {
-      if (oldText.substring(index).startsWith("/*")) {
-        return index;
+      String start = oldText.substring(index);
+      if (start.startsWith("/*")) {
+        return index > 0 && oldText.substring(index - 1, index).equals("\n") ?
+          index - 1 : index;
       }
       index--;
     } while(index >= -1);
@@ -36,7 +38,8 @@ class CommentReplace {
   private int retrieveOldCommentEndIndex(String oldText, int oldCommentPartIndex) {
     int index = oldCommentPartIndex;
     do {
-      if (oldText.substring(index).startsWith("*/")) {
+      String end = oldText.substring(index);
+      if (end.startsWith("*/")) {
         return index + 1;
       }
       index++;
