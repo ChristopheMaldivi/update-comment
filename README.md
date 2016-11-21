@@ -1,1 +1,3 @@
-# update-comment
+ - Can be used to completely remove a comment containing a provided text pattern; for instance headers
+ - Or to update this comment by removing it and replacing it by something else; for instance to update headers
+ - Works recursively on all java files contained under a directory
